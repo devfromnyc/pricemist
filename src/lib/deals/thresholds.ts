@@ -1,0 +1,14 @@
+export const SIGNIFICANT_DROP_PERCENT = 15;
+export const SIGNIFICANT_DROP_MIN_CENTS = 500;
+export const NEAR_LOW_PERCENT = 5;
+export const SALE_NOT_UNUSUAL_AD_PERCENT = 20;
+export const SALE_NOT_UNUSUAL_VS_AVG = 5;
+export const TYPICAL_SALE_AD_PERCENT = 15;
+export const TYPICAL_SALE_BELOW_AVG_MIN = 5;
+export const TYPICAL_SALE_BELOW_AVG_MAX = 15;
+export const PRICE_INCREASE_PERCENT = 5;
+export const PRICE_INCREASE_MIN_CENTS = 500;
+export const MIN_HISTORY_DAYS = 14;
+export const MIN_HISTORY_POINTS = 14;
+export const MIN_AVERAGE_POINTS = 7;
+export const NEW_LOW_MAX_DAYS = 14;

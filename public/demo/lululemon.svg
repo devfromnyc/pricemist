@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="lululemon demo product">
+  <rect width="800" height="800" fill="#F3F4F6"/>
+  <circle cx="400" cy="400" r="160" fill="#D1D5DB"/>
+  <text x="400" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#374151">lululemon</text>
+</svg>

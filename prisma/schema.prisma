@@ -1,0 +1,208 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum DataSource {
+  DEMO
+  INGEST
+  MANUAL
+}
+
+enum StorePlatform {
+  SHOPIFY
+  CUSTOM
+  UNKNOWN
+}
+
+enum DealStatus {
+  HISTORICAL_LOW
+  NEAR_HISTORICAL_LOW
+  SIGNIFICANT_DROP
+  TYPICAL_SALE
+  SALE_BUT_NOT_UNUSUAL
+  PRICE_INCREASED
+  STABLE
+  INSUFFICIENT_HISTORY
+}
+
+enum PriceEventType {
+  PRICE_DROP
+  PRICE_INCREASE
+  HISTORICAL_LOW
+  RETURN_TO_LOW
+  PROMOTION_STARTED
+  PROMOTION_ENDED
+}
+
+enum AlertType {
+  TARGET_PRICE
+  HISTORICAL_LOW
+  PERCENT_DROP
+}
+
+enum ProductCategory {
+  CLOTHING
+  SHOES
+  ELECTRONICS
+  BEAUTY
+  KIDS
+  HOME
+  OTHER
+}
+
+model User {
+  id            String           @id @default(cuid())
+  email         String           @unique
+  name          String?
+  emailVerified Boolean          @default(false)
+  image         String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  userStores    UserStore[]
+  watchlist     WatchlistItem[]
+  alerts        PriceAlert[]
+}
+
+model Store {
+  id         String        @id @default(cuid())
+  slug       String        @unique
+  name       String
+  domain     String
+  logoUrl    String?
+  platform   StorePlatform @default(UNKNOWN)
+  adapterKey String
+  source     DataSource    @default(DEMO)
+  active     Boolean       @default(true)
+  createdAt  DateTime      @default(now())
+  products   Product[]
+  userStores UserStore[]
+}
+
+model UserStore {
+  userId    String
+  storeId   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, storeId])
+}
+
+model Product {
+  id                  String          @id @default(cuid())
+  storeId             String
+  externalId          String
+  slug                String
+  title               String
+  brand               String?
+  category            ProductCategory @default(OTHER)
+  subcategory         String?
+  url                 String
+  imageUrl            String?
+  currency            String          @default("USD")
+  currentPriceCents   Int
+  compareAtPriceCents Int?
+  source              DataSource      @default(DEMO)
+  active              Boolean         @default(true)
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  store               Store           @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  prices              ProductPrice[]
+  metrics             ProductMetrics?
+  events              PriceEvent[]
+  watchers            WatchlistItem[]
+  alerts              PriceAlert[]
+  aiCache             AiCache?
+
+  @@unique([storeId, externalId])
+  @@index([storeId, category])
+}
+
+model ProductPrice {
+  id                  String     @id @default(cuid())
+  productId           String
+  priceCents          Int
+  compareAtPriceCents Int?
+  recordedAt          DateTime
+  source              DataSource @default(DEMO)
+  product             Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, recordedAt])
+}
+
+model ProductMetrics {
+  productId                  String     @id
+  previousPriceCents         Int?
+  priceChangeCents           Int
+  priceChangePercent         Float
+  average30Cents             Int?
+  average60Cents             Int?
+  average90Cents             Int?
+  historicalLowCents         Int
+  historicalHighCents        Int
+  distanceFromLowCents       Int
+  percentBelow30DayAverage   Float?
+  percentBelow90DayAverage   Float?
+  advertisedDiscountPercent  Float?
+  historicalDiscountPercent  Float?
+  historicalPercentile       Float?
+  daysAtCurrentPrice         Int
+  observationCount           Int
+  historySpanDays            Int
+  status                     DealStatus
+  lastPriceChangedAt         DateTime?
+  computedAt                 DateTime
+  product                    Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([status, priceChangePercent])
+  @@index([lastPriceChangedAt])
+}
+
+model PriceEvent {
+  id         String         @id @default(cuid())
+  productId  String
+  type       PriceEventType
+  priceCents Int
+  occurredAt DateTime
+  payload    Json?
+  product    Product        @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, occurredAt])
+}
+
+model WatchlistItem {
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([userId, productId])
+}
+
+model PriceAlert {
+  id        String    @id @default(cuid())
+  userId    String
+  productId String
+  type      AlertType
+  threshold Int?
+  active    Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model AiCache {
+  productId   String   @id
+  explanation String
+  inputHash   String
+  model       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
