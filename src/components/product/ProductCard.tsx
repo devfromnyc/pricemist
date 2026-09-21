@@ -13,7 +13,7 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
   return (
     <article>
       <Link href={`/products/${product.slug}`} className="group block">
-        <div className="relative overflow-hidden rounded-2xl bg-[#f7f7f8]">
+        <div className="relative overflow-hidden rounded-2xl bg-paper">
           <img
             src={product.imageUrl}
             alt={product.title}
@@ -30,7 +30,7 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
             {product.title}
           </h2>
           <div className="mt-1 flex items-baseline gap-2">
-            <p className="text-[22px] font-semibold tabular-nums tracking-tight">
+            <p className="font-mono text-[22px] tabular-nums tracking-tight">
               {formatCents(product.currentPriceCents)}
             </p>
             {showCompare ? (

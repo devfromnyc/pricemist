@@ -14,7 +14,7 @@ export default async function DashboardPage({
   const current = SMART_VIEWS.find((item) => item.id === view) ?? SMART_VIEWS[0];
 
   return (
-    <div className="flex min-h-dvh bg-white">
+    <div className="flex min-h-dvh bg-background">
       <AppSidebar
         products={all}
         activeView={view}
@@ -24,8 +24,10 @@ export default async function DashboardPage({
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center justify-between border-b border-line px-5 py-4 lg:px-8">
           <div>
-            <p className="text-xs font-medium text-accent">Demo snapshot</p>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+              Demo snapshot
+            </p>
+            <h1 className="mt-1 font-[family-name:var(--font-display)] text-3xl tracking-tight">
               {current.label}
             </h1>
             <p className="mt-1 text-sm text-muted">{current.subtitle}</p>
@@ -52,7 +54,7 @@ export default async function DashboardPage({
               name="q"
               defaultValue={params.q ?? ""}
               placeholder="Filter by title, store, brand"
-              className="h-10 w-full max-w-md rounded-full border border-line bg-[#fafafa] px-4 text-sm outline-none ring-accent placeholder:text-muted focus:ring-2"
+              className="h-10 w-full max-w-md rounded-full border border-line bg-paper px-4 text-sm outline-none ring-accent placeholder:text-muted focus:ring-2"
             />
           </form>
         </div>
@@ -63,7 +65,9 @@ export default async function DashboardPage({
               key={item.id}
               href={item.id === "all" ? "/dashboard" : `/dashboard?view=${item.id}`}
               className={`shrink-0 rounded-full px-3 py-1.5 text-sm ${
-                view === item.id ? "bg-accent text-white" : "bg-[#f4f4f6] text-foreground"
+                view === item.id
+                  ? "bg-foreground text-paper"
+                  : "bg-paper text-foreground"
               }`}
             >
               {item.label}

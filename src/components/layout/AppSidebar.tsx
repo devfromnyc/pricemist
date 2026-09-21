@@ -26,12 +26,12 @@ export function AppSidebar({
   activeStore?: string;
 }) {
   return (
-    <aside className="hidden w-60 shrink-0 flex-col border-r border-line bg-white px-4 py-5 lg:flex">
+    <aside className="hidden w-60 shrink-0 flex-col border-r border-line bg-paper px-4 py-5 lg:flex">
       <Link href="/" className="mb-8 flex items-center gap-2 px-2">
-        <span className="flex h-6 w-6 items-center justify-center rounded-md bg-accent text-[10px] font-bold text-white">
-          DT
+        <span className="h-2.5 w-2.5 rounded-full bg-accent" />
+        <span className="font-[family-name:var(--font-display)] text-lg tracking-tight">
+          {siteName}
         </span>
-        <span className="text-sm font-semibold tracking-tight">{siteName}</span>
       </Link>
 
       <p className="px-2 text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
@@ -50,7 +50,7 @@ export function AppSidebar({
               className={`flex items-center justify-between rounded-lg px-2 py-2 text-sm ${
                 selected
                   ? "bg-accent/10 font-medium text-accent"
-                  : "text-foreground hover:bg-black/[0.03]"
+                  : "text-foreground hover:bg-foreground/[0.04]"
               }`}
             >
               <span>{view.label}</span>
@@ -78,7 +78,7 @@ export function AppSidebar({
               className={`flex items-center justify-between rounded-lg px-2 py-2 text-sm ${
                 selected
                   ? "bg-accent/10 font-medium text-accent"
-                  : "text-foreground hover:bg-black/[0.03]"
+                  : "text-foreground hover:bg-foreground/[0.04]"
               }`}
             >
               <span>{store.name}</span>

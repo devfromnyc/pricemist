@@ -21,14 +21,14 @@ export default async function ProductPage({
   const historical = product.metrics.historicalDiscountPercent;
 
   return (
-    <div className="min-h-dvh bg-white">
+    <div className="min-h-dvh bg-background">
       <div className="mx-auto max-w-5xl px-5 py-8 lg:px-8">
         <Link href="/dashboard" className="text-sm text-accent">
           Back to dashboard
         </Link>
 
         <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="overflow-hidden rounded-3xl bg-[#f7f7f8]">
+          <div className="overflow-hidden rounded-3xl bg-paper">
             <img
               src={product.imageUrl}
               alt={product.title}
@@ -38,7 +38,7 @@ export default async function ProductPage({
 
           <div>
             <p className="text-sm text-muted">{product.storeName}</p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight">
+            <h1 className="mt-2 font-[family-name:var(--font-display)] text-4xl tracking-tight">
               {product.title}
             </h1>
             {badge ? (
@@ -48,7 +48,7 @@ export default async function ProductPage({
             ) : null}
 
             <div className="mt-6 flex items-baseline gap-3">
-              <p className="text-4xl font-semibold tabular-nums">
+              <p className="font-mono text-4xl tabular-nums tracking-tight">
                 {formatCents(product.currentPriceCents)}
               </p>
               {product.compareAtPriceCents ? (
@@ -58,20 +58,20 @@ export default async function ProductPage({
               ) : null}
             </div>
 
-            <div className="mt-8 grid gap-4 rounded-2xl border border-line p-5 sm:grid-cols-2">
+            <div className="mt-8 grid gap-4 rounded-2xl border border-line bg-paper p-5 sm:grid-cols-2">
               <div>
-                <p className="text-xs uppercase tracking-wide text-muted">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
                   Advertised discount
                 </p>
-                <p className="mt-1 text-lg font-medium tabular-nums">
+                <p className="mt-1 font-mono text-lg tabular-nums">
                   {advertised !== null ? `${Math.round(advertised)}% off` : "None"}
                 </p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wide text-muted">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
                   vs 90-day average
                 </p>
-                <p className="mt-1 text-lg font-medium tabular-nums">
+                <p className="mt-1 font-mono text-lg tabular-nums">
                   {historical !== null
                     ? `${Math.round(historical)}% below typical`
                     : "Not enough history"}

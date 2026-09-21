@@ -16,7 +16,7 @@ export function DealBadge({
 }) {
   return (
     <span
-      className={`rounded-full px-2.5 py-1 text-xs font-medium ${tones[tone]}`}
+      className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${tones[tone]}`}
     >
       {label}
     </span>
