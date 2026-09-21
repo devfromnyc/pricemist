@@ -26,7 +26,7 @@ export function AppSidebar({
 }) {
   return (
     <aside className="hidden w-60 shrink-0 flex-col border-r border-line bg-white px-4 py-5 lg:flex">
-      <Link href="/dashboard" className="mb-8 flex items-center gap-2 px-2">
+      <Link href="/" className="mb-8 flex items-center gap-2 px-2">
         <span className="flex h-6 w-6 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
           P
         </span>

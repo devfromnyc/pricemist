@@ -30,6 +30,12 @@ export default async function DashboardPage({
             </h1>
             <p className="mt-1 text-sm text-muted">{current.subtitle}</p>
           </div>
+          <Link
+            href="/"
+            className="hidden text-sm text-muted hover:text-foreground sm:inline"
+          >
+            Marketing site
+          </Link>
         </header>
 
         <div className="border-b border-line px-5 py-3 lg:px-8">
