@@ -70,8 +70,8 @@ export default function LandingPage() {
             </h1>
             <p className="mt-4 max-w-lg text-base leading-7 text-muted sm:mt-6 sm:text-lg">
               {siteName} keeps the history, ranks the best deals, and shows you
-              when the number is actually yours. The demo is a snapshot — 180 days
-              of prices and math, not a live scrape.
+              when the number is actually yours. This page is a working demo of
+              software you can also run on your own computer.
             </p>
             <div className="mt-6 sm:mt-8">
               <Link
@@ -159,6 +159,57 @@ export default function LandingPage() {
               <p className="mt-3 text-sm leading-6 text-muted">{feature.body}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section
+        id="setup"
+        className="mx-auto max-w-[1400px] scroll-mt-10 px-4 pb-16 sm:px-8 lg:pb-24"
+      >
+        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">
+          On your computer
+        </p>
+        <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-[1.05] sm:text-5xl">
+          The website is the showroom. The product is software.
+        </h2>
+        <p className="mt-5 max-w-xl text-muted">
+          You can walk the floor in this browser right now. If you want a copy
+          on your own machine — for a portfolio review, a client walkthrough, or
+          just to keep it — I set it up with you. You do not need to know what a
+          terminal is.
+        </p>
+        <div className="mt-10 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2">
+          <article className="bg-paper px-6 py-8 sm:px-8">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+              Try it here
+            </p>
+            <h3 className="mt-3 font-[family-name:var(--font-display)] text-2xl">
+              Open the live demo
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-muted">
+              No account. Same history, same math, in this browser. Click
+              through deals and product pages the way a shopper would.
+            </p>
+            <Link
+              href="/dashboard?view=deals"
+              className="mt-6 inline-block text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground underline decoration-line underline-offset-4 hover:decoration-accent"
+            >
+              See today's deals
+            </Link>
+          </article>
+          <article className="bg-paper px-6 py-8 sm:px-8">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+              Keep a copy
+            </p>
+            <h3 className="mt-3 font-[family-name:var(--font-display)] text-2xl">
+              I install it on your computer
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-muted">
+              The technical steps stay on my side. We sit down, I get it running
+              on your machine, and you have the same Doubletake you see here —
+              without learning any developer tools.
+            </p>
+          </article>
         </div>
       </section>
 

@@ -25,6 +25,12 @@ export function MarketingHeader() {
             How it works
           </Link>
           <Link
+            href="/#setup"
+            className="hidden text-sm text-foreground/70 hover:text-foreground md:inline"
+          >
+            On your computer
+          </Link>
+          <Link
             href="/dashboard?view=deals"
             className="bg-[#1e1812] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#f7f1e6]"
           >
