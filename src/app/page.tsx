@@ -171,22 +171,15 @@ export default function LandingPage() {
             Open the demo. Pick a price. Wait for the low.
           </h2>
           <p className="mt-5 max-w-md text-muted">
-            No signup. History decides the deal. If you like the engine, the
-            code is public.
+            No signup. History decides the deal.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8">
             <Link
               href="/dashboard?view=deals"
-              className="bg-accent px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-background"
+              className="inline-block bg-accent px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-background"
             >
               See today's deals
             </Link>
-            <a
-              href="https://github.com/devfromnyc/pricemist"
-              className="border border-foreground/20 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em]"
-            >
-              View the code
-            </a>
           </div>
         </div>
         <div className="relative min-h-[320px] bg-[#efece7]">
