@@ -2,6 +2,7 @@ import Link from "next/link";
 import { seedStores } from "@/lib/seed/catalog";
 import type { CatalogProduct } from "@/lib/catalog/demo";
 import { matchesView, SMART_VIEWS, type SmartView } from "@/lib/catalog/views";
+import { siteName } from "@/lib/site";
 
 function hrefFor(view: SmartView, store?: string) {
   const params = new URLSearchParams();
@@ -27,10 +28,10 @@ export function AppSidebar({
   return (
     <aside className="hidden w-60 shrink-0 flex-col border-r border-line bg-white px-4 py-5 lg:flex">
       <Link href="/" className="mb-8 flex items-center gap-2 px-2">
-        <span className="flex h-6 w-6 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
-          P
+        <span className="flex h-6 w-6 items-center justify-center rounded-md bg-accent text-[10px] font-bold text-white">
+          DT
         </span>
-        <span className="text-sm font-semibold tracking-tight">Pricemist</span>
+        <span className="text-sm font-semibold tracking-tight">{siteName}</span>
       </Link>
 
       <p className="px-2 text-[11px] font-medium uppercase tracking-[0.14em] text-muted">

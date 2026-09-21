@@ -1,6 +1,8 @@
-# PriceMist
+# Doubletake
 
-Ecommerce deal intelligence. PriceMist tracks products across stores and tells you whether an advertised sale is actually a good deal — using historical prices and math, not an LLM opinion.
+Ecommerce deal intelligence. Doubletake tracks historical prices so you can buy at the number you actually want — best deals first, timed from real history, not an LLM opinion.
+
+The public name is Doubletake. The repo, package, and file names are still `pricemist`.
 
 The first client-ready experience is **seeded snapshot data**.
 

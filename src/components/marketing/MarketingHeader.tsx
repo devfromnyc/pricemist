@@ -1,33 +1,34 @@
 import Link from "next/link";
+import { siteName } from "@/lib/site";
 
 export function MarketingHeader() {
   return (
-    <header className="sticky top-0 z-20 border-b border-line bg-white/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
-            P
+    <header className="absolute inset-x-0 top-0 z-30">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-5 sm:px-8">
+        <Link href="/" className="flex items-center gap-3 text-foreground">
+          <span className="h-2.5 w-2.5 rounded-full bg-accent" />
+          <span className="font-[family-name:var(--font-display)] text-xl tracking-tight">
+            {siteName}
           </span>
-          <span className="text-sm font-semibold tracking-tight">Pricemist</span>
         </Link>
-        <nav className="flex items-center gap-1 sm:gap-2">
+        <nav className="flex items-center gap-2 sm:gap-5">
+          <Link
+            href="/#proof"
+            className="hidden text-sm text-foreground/70 hover:text-foreground sm:inline"
+          >
+            Best deals
+          </Link>
           <Link
             href="/#how"
-            className="hidden px-3 py-2 text-sm text-muted hover:text-foreground sm:inline"
+            className="hidden text-sm text-foreground/70 hover:text-foreground sm:inline"
           >
             How it works
           </Link>
           <Link
-            href="/#proof"
-            className="hidden px-3 py-2 text-sm text-muted hover:text-foreground sm:inline"
+            href="/dashboard?view=deals"
+            className="bg-[#1e1812] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#f7f1e6]"
           >
-            The difference
-          </Link>
-          <Link
-            href="/dashboard"
-            className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-white"
-          >
-            Open demo
+            See today's deals
           </Link>
         </nav>
       </div>

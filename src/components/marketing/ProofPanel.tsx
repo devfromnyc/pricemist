@@ -9,36 +9,35 @@ export function ProofPanel({
   product: CatalogProduct;
   caption: string;
 }) {
-  const advertised = product.metrics.advertisedDiscountPercent;
-  const historical = product.metrics.historicalDiscountPercent;
+  const typical = product.metrics.average90Cents;
+  const low = product.metrics.historicalLowCents;
 
   return (
-    <Link
-      href={`/products/${product.slug}`}
-      className="block rounded-3xl border border-line bg-white p-5 shadow-sm transition hover:border-accent/40"
-    >
-      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted">
+    <Link href={`/products/${product.slug}`} className="hangtag block transition hover:-translate-y-1">
+      <p className="text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
         {caption}
       </p>
-      <p className="mt-3 text-sm text-muted">{product.storeName}</p>
-      <h3 className="mt-1 text-lg font-semibold tracking-tight">{product.title}</h3>
-      <p className="mt-4 text-3xl font-semibold tabular-nums">
+      <p className="mt-5 text-sm text-muted">{product.storeName}</p>
+      <h3 className="mt-1 font-[family-name:var(--font-display)] text-2xl leading-tight">
+        {product.title}
+      </h3>
+      <p className="mt-5 font-mono text-4xl tabular-nums tracking-tight">
         {formatCents(product.currentPriceCents)}
       </p>
-      <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">
-        <div className="rounded-2xl bg-[#f7f7f8] p-3">
-          <dt className="text-xs text-muted">Advertised</dt>
-          <dd className="mt-1 font-medium tabular-nums">
-            {advertised !== null ? `${Math.round(advertised)}% off` : "No sale tag"}
+      <dl className="mt-6 grid grid-cols-2 gap-3 border-t border-line pt-4">
+        <div>
+          <dt className="text-[11px] uppercase tracking-[0.16em] text-muted">
+            90-day typical
+          </dt>
+          <dd className="mt-1 font-mono text-lg">
+            {typical !== null ? formatCents(typical) : "—"}
           </dd>
         </div>
-        <div className="rounded-2xl bg-[#f7f7f8] p-3">
-          <dt className="text-xs text-muted">vs typical</dt>
-          <dd className="mt-1 font-medium tabular-nums">
-            {historical !== null
-              ? `${Math.round(historical)}% below 90-day avg`
-              : "Not enough history"}
-          </dd>
+        <div>
+          <dt className="text-[11px] uppercase tracking-[0.16em] text-muted">
+            Historical low
+          </dt>
+          <dd className="mt-1 font-mono text-lg text-accent">{formatCents(low)}</dd>
         </div>
       </dl>
     </Link>
